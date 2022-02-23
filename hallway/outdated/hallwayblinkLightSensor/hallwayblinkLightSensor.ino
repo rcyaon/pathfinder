@@ -36,8 +36,6 @@ int soundSensor = D0;
 // How many NeoPixels are attached to the Arduino?
 #define LED_COUNT 1200
 
-
-
 // Declare our NeoPixel strip object:
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 // Argument 1 = Number of pixels in NeoPixel strip
@@ -48,7 +46,6 @@ Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 //   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
 //   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
 //   NEO_RGBW    Pixels are wired for RGBW bitstream (NeoPixel RGBW products)
-
 
 // setup() function -- runs once at startup --------------------------------
 
@@ -79,21 +76,20 @@ void loop() {
   {
     digitalWrite(LED_BUILTIN, HIGH);
     uint32_t red = strip.Color(255, 0, 0);
-    for(int i=0; i<1200; i=i+50) { // For each pixel in strip...
-    strip.fill(red, i,50 );
-    //strip.show();                          //  Update strip to match
-    //delay(100);                           //  Pause for a moment
-     for(int j=0; j<1200; j=j+50) { // For each pixel in strip...
-    strip.fill(0, j,50 );
-    strip.show();                          //  Update strip to match
-    //delay(100);                           //  Pause for a moment
+      for(int i=0; i<1200; i=i+50) { // For each pixel in strip...
+        strip.fill(red, i,50 );
+    // strip.show();                          //  Update strip to match
+    // delay(100);                           //  Pause for a moment
+      for(int j=0; j<1200; j=j+50) { // For each pixel in strip...
+        strip.fill(0, j,50 );
+        strip.show();                          //  Update strip to match
+    // delay(100);                           //  Pause for a moment
+      }
+      }
   }
-  }
-  }
-  else
+    else
   {
-    digitalWrite(LED_BUILTIN, LOW);
-    strip.clear();
-    
+      digitalWrite(LED_BUILTIN, LOW);
+      strip.clear();
   }
 }

@@ -102,18 +102,38 @@ void loop() {
 
 }
 
+
 // Theater-marquee-style chasing lights. Pass in a color (32-bit value,
-// a la strip.Color(r,g,b) as mentioned above), and a delay time (in ms)
+// a la strip. Color(r,g,b) as mentioned above), and a delay time (in ms)
 // between frames.
-//Theatre-style crawling lights - in reverse
+
+void theaterChase(uint32_t color, int wait) {
+  for(int a=0; a<5; a++) {  // Repeat 100 times...
+    for(int b=0; b<5; b++) { //  'b' counts from 0 to 5...
+      strip.clear();         //   Set all pixels in RAM to 0 (off)
+      // 'c' counts up from 'b' to end of strip in steps of 3...
+        for(int c=b; c<strip.numPixels(); c += 5) {
+          strip.setPixelColor(c, color); // Set pixel 'c' to value 'color'
+      }
+      strip.show(); // Update strip with new contents
+      delay(wait);  // Pause for a moment
+    }
+  }
+ strip.clear();         //   Set all pixels in RAM to 0 (off)
+ strip.show();
+} 
+
+
+// Theater-marquee-style chasing lights - in reverse.
+// Currently unapplicable to the buttons.
 void theaterChaseReverse(uint32_t c, uint8_t wait) {
   for (int j=0; j<10; j++) {  //do 10 cycles of chasing
     for (int q=0; q < 5; q++) {
       for (uint16_t i=0; i < strip.numPixels(); i=i+5) {
         strip.setPixelColor(strip.numPixels() - (i+q), c);    //turn every third pixel on
       }
+      
       strip.show();
-
       delay(wait);
 
       for (uint16_t i=0; i < strip.numPixels(); i=i+5) {
@@ -125,19 +145,3 @@ void theaterChaseReverse(uint32_t c, uint8_t wait) {
   strip.clear();         //   Set all pixels in RAM to 0 (off)
      strip.show();
 }
- 
- void theaterChase(uint32_t color, int wait) {
-  for(int a=0; a<5; a++) {  // Repeat 100 times...
-    for(int b=0; b<5; b++) { //  'b' counts from 0 to 5...
-      strip.clear();         //   Set all pixels in RAM to 0 (off)
-      // 'c' counts up from 'b' to end of strip in steps of 3...
-      for(int c=b; c<strip.numPixels(); c += 5) {
-        strip.setPixelColor(c, color); // Set pixel 'c' to value 'color'
-      }
-      strip.show(); // Update strip with new contents
-      delay(wait);  // Pause for a moment
-    }
-  }
- strip.clear();         //   Set all pixels in RAM to 0 (off)
- strip.show();
-} 

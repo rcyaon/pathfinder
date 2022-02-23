@@ -64,12 +64,6 @@ void loop() {
 }
 
 
-
-
-
-
-
-
 // Theater-marquee-style chasing lights. Pass in a color (32-bit value,
 // a la strip.Color(r,g,b) as mentioned above), and a delay time (in ms)
 // between frames.

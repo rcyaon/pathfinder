@@ -85,7 +85,7 @@ void loop() {
   if (buttonStateGreen == LOW) {
     // turn LED on:
     // digitalWrite(ledPin, HIGH);
-      theaterChase(strip.Color(0,  255 ,   0), 1); // Green, half brightness, 1 microsecond delay
+      theaterChaseReverse(strip.Color(0,  255 ,   0), 1); // Green, half brightness, 1 microsecond delay
   } 
 
       if (buttonStateRed == LOW) {

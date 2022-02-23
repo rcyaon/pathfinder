@@ -54,25 +54,40 @@ void loop() {
   
   if(statusLightSensor == 0){
     if (statusSoundSensor == 0){
-    theaterChase(strip.Color(0,  255 ,   0), 1); // Red, half brightness
-    //delay(5);
+    theaterChase(strip.Color(255,  0 ,   0), 1); // Green, half brightness, 1 microsecond delay, Yellow is (225, 225, 0)
+    theaterChaseReverse(strip.Color(255,  0 ,   0), 1); // Green, half brightness, 1 microsecond delay, Yellow is (225, 225, 0)
     }
   }
  }
 
 
-
-
-
-
-
-
 // Theater-marquee-style chasing lights. Pass in a color (32-bit value,
 // a la strip.Color(r,g,b) as mentioned above), and a delay time (in ms)
 // between frames.
-void theaterChase(uint32_t color, int wait) {
-  for(int a=0; a<1000; a++) {  // Repeat 10 times...
-    for(int b=0; b<5; b++) { //  'b' counts from 0 to 5...
+//Theatre-style crawling lights - in reverse
+void theaterChaseReverse(uint32_t c, uint8_t wait) {
+  for (int j=0; j<100; j++) {  //do 10 cycles of chasing
+    for (int q=0; q < 10; q++) {
+      for (uint16_t i=0; i < strip.numPixels(); i=i+5) {
+        strip.setPixelColor(strip.numPixels() - (i+q), c);    //turn every third pixel on
+      }
+      strip.show();
+
+      delay(wait);
+
+      for (uint16_t i=0; i < strip.numPixels(); i=i+5) {
+        strip.setPixelColor(strip.numPixels() - (i+q), 0);        //turn every third pixel off
+      }
+    }
+     
+  }
+  strip.clear();         //   Set all pixels in RAM to 0 (off)
+     strip.show();
+}
+ 
+ void theaterChase(uint32_t color, int wait) {
+  for(int a=0; a<100; a++) {  // Repeat 100 times...
+    for(int b=0; b<10; b++) { //  'b' counts from 0 to 5...
       strip.clear();         //   Set all pixels in RAM to 0 (off)
       // 'c' counts up from 'b' to end of strip in steps of 3...
       for(int c=b; c<strip.numPixels(); c += 5) {
@@ -84,4 +99,4 @@ void theaterChase(uint32_t color, int wait) {
   }
  strip.clear();         //   Set all pixels in RAM to 0 (off)
  strip.show();
-}
+} 

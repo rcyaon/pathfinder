@@ -1,6 +1,3 @@
-// TagoIO and ESP integration with Temperature
-// Carlo Stramaglia April 2nd 2023
-
 #include "DHT.h"
 #include <HTTPClient.h>
 
